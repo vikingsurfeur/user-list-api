@@ -30,8 +30,8 @@ const UserDataList: React.FC<{ data: any }> = ({ data }) => {
     return (
         <>
             {data.map((user: any) => (
-                <>
-                    <IonList key={user.email} className="ion-padding">
+                <div key={user.email}>
+                    <IonList className="ion-padding">
                         <IonGrid>
                             <IonRow className="ion-justify-content-center">
                                 <IonCol size="9">
@@ -96,7 +96,7 @@ const UserDataList: React.FC<{ data: any }> = ({ data }) => {
                             </IonButton>
                         </IonGrid>
                     </IonModal>
-                </>
+                </div>
             ))}
         </>
     );
