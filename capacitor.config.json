@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ionic-azuracom_user",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
