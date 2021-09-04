@@ -2,14 +2,11 @@
 import React, { useState, useEffect } from "react";
 
 /* Import Components */
-import UserDataList from "./components/UserDataList";
 import Header from "./components/Header";
+import UserDataList from "./components/UserDataList";
 
 /* Import Axios */
 import axios from "axios";
-
-/* Import Interface */
-import { UserInterface } from "./interface/interface";
 
 /* Import API URL */
 import { API_URL } from "./constants/apiUrlConf";
@@ -38,7 +35,7 @@ import "./theme/variables.css";
 
 const App: React.FC = () => {
     /* User Data */
-    const [data, setData] = useState<UserInterface[]>([]);
+    const [data, setData] = useState<string[]>([]);
 
     /* Fetch User Data */
     useEffect(() => {
@@ -49,10 +46,10 @@ const App: React.FC = () => {
                     url: `${API_URL}`,
                     responseType: "json",
                 });
-                
-                if (response.status === 200) {
-                    setData(response.data);
-                }
+
+                response.status === 200
+                    ? setData(response.data)
+                    : console.error(`${response.statusText}`);
             } catch (error: any) {
                 console.error(`${error.message}`);
             }
@@ -66,7 +63,7 @@ const App: React.FC = () => {
             <IonPage>
                 <Header />
                 <IonContent>
-                    <UserDataList data={data}/>
+                    <UserDataList data={data} />
                 </IonContent>
             </IonPage>
         </IonApp>

@@ -1,5 +1,5 @@
 /* Import React Components */
-import { useState } from 'react';
+import { useState } from "react";
 
 /* Import Ionic Components */
 import {
@@ -10,11 +10,11 @@ import {
     IonRow,
     IonCol,
     IonModal,
-    IonButton
+    IonButton,
 } from "@ionic/react";
 
 /* UserDataList Component */
-const UserDataList: React.FC<{ data: any }> = ({ data }) => {
+const UserDataList: React.FC<{ data: string[] }> = ({ data }) => {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [userModalDetails, setUserModalDetails] = useState<any>([]);
 
@@ -25,7 +25,7 @@ const UserDataList: React.FC<{ data: any }> = ({ data }) => {
     const handlerUserDetails = (email: string) => {
         const userDetails = data.find((user: any) => user.email === email);
         setUserModalDetails(userDetails);
-    }
+    };
 
     return (
         <>
@@ -62,7 +62,8 @@ const UserDataList: React.FC<{ data: any }> = ({ data }) => {
                                 <IonCol>
                                     <IonItem>
                                         <IonLabel className="ion-text-center">
-                                            First Name : {userModalDetails.firstname}
+                                            First Name :{" "}
+                                            {userModalDetails.firstname}
                                         </IonLabel>
                                     </IonItem>
                                 </IonCol>
@@ -71,7 +72,8 @@ const UserDataList: React.FC<{ data: any }> = ({ data }) => {
                                 <IonCol>
                                     <IonItem>
                                         <IonLabel className="ion-text-center">
-                                            Last Name : {userModalDetails.lastname}
+                                            Last Name :{" "}
+                                            {userModalDetails.lastname}
                                         </IonLabel>
                                     </IonItem>
                                 </IonCol>
