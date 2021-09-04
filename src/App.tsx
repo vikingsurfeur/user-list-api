@@ -34,7 +34,6 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 
 const App: React.FC = () => {
-    /* User Data */
     const [data, setData] = useState<string[]>([]);
 
     /* Fetch User Data */
@@ -47,11 +46,13 @@ const App: React.FC = () => {
                     responseType: "json",
                 });
 
-                response.status === 200
-                    ? setData(response.data)
-                    : console.error(`${response.statusText}`);
+                if (response.status === 200) {
+                    setData(response.data);
+                } else {
+                    console.error(`Error : ${response.statusText}`);
+                }
             } catch (error: any) {
-                console.error(`${error.message}`);
+                console.error(error.message);
             }
         };
 
