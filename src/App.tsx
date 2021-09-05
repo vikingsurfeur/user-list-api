@@ -12,7 +12,7 @@ import axios from "axios";
 import { API_URL } from "./constants/apiUrlConf";
 
 /* Import Ionic Components */
-import { IonApp, IonPage, IonContent } from "@ionic/react";
+import { IonApp, IonPage, IonContent, IonAlert } from "@ionic/react";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -33,8 +33,15 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
+/* App Component */
 const App: React.FC = () => {
     const [data, setData] = useState<string[]>([]);
+    const [errorConnectionMessage, setErrorConnectionMessage] =
+        useState<string>("");
+
+    const clearError = () => {
+        setErrorConnectionMessage("");
+    };
 
     /* Fetch User Data */
     useEffect(() => {
@@ -49,18 +56,25 @@ const App: React.FC = () => {
                 if (response.status === 200) {
                     setData(response.data);
                 } else {
-                    console.error(`Error : ${response.statusText}`);
+                    setErrorConnectionMessage(`${response.statusText}`);
+                    console.error(errorConnectionMessage);
                 }
             } catch (error: any) {
-                console.error(error.message);
+                setErrorConnectionMessage(`${error.message}`);
+                console.error(errorConnectionMessage);
             }
         };
 
         getUserData();
-    }, []);
+    }, [errorConnectionMessage]);
 
     return (
         <IonApp>
+            <IonAlert
+                isOpen={!!errorConnectionMessage}
+                message={`We encountered some problems : ${errorConnectionMessage}`}
+                buttons={[{ text: "OK", handler: clearError }]}
+            />
             <IonPage>
                 <Header />
                 <IonContent>

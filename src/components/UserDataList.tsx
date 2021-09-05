@@ -22,6 +22,7 @@ const UserDataList: React.FC<{ data: string[] }> = ({ data }) => {
         setShowModal(!showModal);
     };
 
+    /* Find the user by his email address */
     const handlerUserDetails = (email: string) => {
         const userDetails = data.find((user: any) => user.email === email);
         setUserModalDetails(userDetails);

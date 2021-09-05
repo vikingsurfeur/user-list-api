@@ -1,6 +1,7 @@
 /* Import Ionic Components */
 import { IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 
+/* Header Component */
 const Header: React.FC = () => {
     return (
         <IonHeader>
