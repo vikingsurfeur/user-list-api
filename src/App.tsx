@@ -100,13 +100,6 @@ const App: React.FC = () => {
                             <FormUser />
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
-                            <IonButton>
-                                Add This User
-                            </IonButton>
-                        </IonCol>
-                    </IonRow>
                 </IonGrid>
             </IonModal>
             <IonPage>
