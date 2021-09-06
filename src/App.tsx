@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 /* Import Components */
 import Header from "./components/Header";
 import UserDataList from "./components/UserDataList";
+import FormUser from "./components/FormUser";
 
 /* Import Axios */
 import axios from "axios";
@@ -12,7 +13,17 @@ import axios from "axios";
 import { API_URL } from "./constants/apiUrlConf";
 
 /* Import Ionic Components */
-import { IonApp, IonPage, IonContent, IonAlert } from "@ionic/react";
+import {
+    IonApp,
+    IonPage,
+    IonContent,
+    IonAlert,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonButton,
+    IonModal,
+} from "@ionic/react";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -38,9 +49,16 @@ const App: React.FC = () => {
     const [data, setData] = useState<string[]>([]);
     const [errorConnectionMessage, setErrorConnectionMessage] =
         useState<string>("");
-
+    const [showModalForm, setShowModalForm] = useState<boolean>(false);
+    
+    /* Clear message Error */    
     const clearError = () => {
         setErrorConnectionMessage("");
+    };
+
+    /* Handle modal form to add user */
+    const handleModalForm = () => {
+        setShowModalForm(!showModalForm);
     };
 
     /* Fetch User Data */
@@ -75,10 +93,39 @@ const App: React.FC = () => {
                 message={`We encountered some problems : ${errorConnectionMessage}`}
                 buttons={[{ text: "OK", handler: clearError }]}
             />
+            <IonModal isOpen={showModalForm}>
+                <IonGrid>
+                    <IonRow>
+                        <IonCol>
+                            <FormUser />
+                        </IonCol>
+                    </IonRow>
+                    <IonRow>
+                        <IonCol>
+                            <IonButton>
+                                Add This User
+                            </IonButton>
+                        </IonCol>
+                    </IonRow>
+                </IonGrid>
+            </IonModal>
             <IonPage>
                 <Header />
                 <IonContent>
                     <UserDataList data={data} />
+                    <IonGrid>
+                        <IonRow>
+                            <IonCol>
+                                <IonButton
+                                    className="ion-margin-top ion-padding"
+                                    expand="block"
+                                    onClick={handleModalForm}
+                                >
+                                    + Add User
+                                </IonButton>
+                            </IonCol>
+                        </IonRow>
+                    </IonGrid>
                 </IonContent>
             </IonPage>
         </IonApp>
