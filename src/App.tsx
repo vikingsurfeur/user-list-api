@@ -9,9 +9,6 @@ import FormUser from "./components/FormUser";
 /* Import Axios */
 import axios from "axios";
 
-/* Import API URL */
-import { API_URL } from "./constants/apiUrlConf";
-
 /* Import Ionic Components */
 import {
     IonApp,
@@ -44,6 +41,9 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
+/* Define URL environment constant*/
+const { REACT_APP_API_URL_GET_USER } = process.env;
+
 /* App Component */
 const App: React.FC = () => {
     const [data, setData] = useState<string[]>([]);
@@ -67,12 +67,17 @@ const App: React.FC = () => {
             try {
                 const response = await axios({
                     method: "GET",
-                    url: `${API_URL}`,
+                    url: `${REACT_APP_API_URL_GET_USER}`,
                     responseType: "json",
+                    headers: {
+                        "Content-type": "application/ld+json",
+                        "Accept": "application/ld+json",
+                    }
                 });
 
                 if (response.status === 200) {
-                    setData(response.data);
+                    setData(response.data["hydra:member"]);
+                    console.log(response.data)
                 } else {
                     setErrorConnectionMessage(`${response.statusText}`);
                     console.error(errorConnectionMessage);
