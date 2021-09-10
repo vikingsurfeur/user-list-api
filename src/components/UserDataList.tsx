@@ -14,7 +14,7 @@ import {
 } from "@ionic/react";
 
 /* UserDataList Component */
-const UserDataList: React.FC<{ data: string[] }> = ({ data }) => {
+const UserDataList: React.FC<{ usersData: string[] }> = ({ usersData }) => {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [userModalDetails, setUserModalDetails] = useState<any>([]);
 
@@ -24,13 +24,13 @@ const UserDataList: React.FC<{ data: string[] }> = ({ data }) => {
 
     /* Find the user by his email address */
     const handlerUserDetails = (email: string) => {
-        const userDetails = data.find((user: any) => user.email === email);
+        const userDetails = usersData.find((user: any) => user.email === email);
         setUserModalDetails(userDetails);
     };
 
     return (
         <>
-            {data.map((user: any) => (
+            {usersData.map((user: any) => (
                 <div key={user.email}>
                     <IonList className="ion-padding">
                         <IonGrid>

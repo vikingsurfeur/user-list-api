@@ -21,6 +21,7 @@ const store = createStore(
 /* Dispatch the store */
 store.dispatch(getUsers());
 
+/* Render the DOM */
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
