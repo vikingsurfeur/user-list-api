@@ -1,5 +1,5 @@
 /* Import hooks from React */
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* Import hooks from redux */
 import { useSelector } from "react-redux";
@@ -47,6 +47,7 @@ import "./theme/variables.css";
 /* App Component */
 const App: React.FC = () => {
     const usersData = useSelector((state: any) => state.userReducer);
+    const usersErrorData = useSelector((state: any) => state.userErrorReducer);
     const [errorConnectionMessage, setErrorConnectionMessage] =
         useState<string>("");
     const [showModalForm, setShowModalForm] = useState<boolean>(false);
