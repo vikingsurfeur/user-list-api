@@ -1,5 +1,5 @@
 /* Import React Route */
-import { Route, Redirect } from "react-router";
+import { Route } from "react-router";
 
 /* Import React Hooks */
 import { useState } from "react";

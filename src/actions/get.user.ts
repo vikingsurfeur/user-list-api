@@ -31,7 +31,7 @@ const getUsers = () => {
                 responseType: "json",
                 headers: {
                     "Content-type": "application/ld+json",
-                    Accept: "application/ld+json",
+                    "Accept": "application/ld+json",
                 },
             });
             return onSuccess(response);

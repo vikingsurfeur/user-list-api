@@ -1,9 +1,10 @@
+/* Import Form Login */
+import FormLogin from "../components/FormLogin";
+
 const LoginPage: React.FC = () => {
     return (
-        <>
-            <h1>Login Page</h1>
-        </>
-    )
-}
+        <FormLogin />
+    );
+};
 
 export default LoginPage;

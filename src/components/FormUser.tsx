@@ -22,12 +22,6 @@ interface IValues {
     job: string;
 }
 
-/* Interface for Form Errors */
-interface IErrors {
-    email: string;
-    password: string;
-}
-
 /* FormUser Component */
 const FormUser: React.FC = () => {
     return (
@@ -39,7 +33,7 @@ const FormUser: React.FC = () => {
                     job: "",
                 }}
                 validate={(values) => {
-                    const errors: IErrors | any = {};
+                    const errors: IValues | any = {};
                     if (!values.email) {
                         errors.email = "Required";
                     } else if (
