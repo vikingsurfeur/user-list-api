@@ -62,6 +62,13 @@ const App: React.FC = () => {
         setShowModalForm(!showModalForm);
     };
 
+    /* Check if usersDataError is empty */
+    useEffect(() => {
+        if (!isEmpty(usersErrorData)) {
+            setErrorConnectionMessage(usersErrorData);
+        }
+    }, [usersErrorData]);
+
     return (
         <IonApp>
             <IonAlert
